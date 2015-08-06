@@ -13,23 +13,23 @@
       	//variable to store method
       var container = document.getElementById("main");
 
-      //populate subject info
-      var subjectElement = document.createElement("div");
-
       //populate sender info
       var senderElement = document.createElement("div");
+
+      //populate subject info
+      var subjectElement = document.createElement("div");
 
       //populate body info
       var bodyElement = document.createElement("div");
 
       //access subject objects through window.geemails
-      subjectElement.innerHTML = window.geemails[i].subject;
       senderElement.innerHTML = window.geemails[i].sender;
+      subjectElement.innerHTML = window.geemails[i].subject;
       bodyElement.innerHTML = window.geemails[i].body;
 
       //append subject objects into container
-      container.appendChild(subjectElement);
       container.appendChild(senderElement);
+      container.appendChild(subjectElement);
       container.appendChild(bodyElement);
 
   		}

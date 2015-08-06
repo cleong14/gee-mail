@@ -1,8 +1,12 @@
 h1 {
-	text-align: center
+	text-align: center;
 }
 
 .container {
-
+	position: relative;
+	margin: auto;
 }
 
+#main {
+
+}
