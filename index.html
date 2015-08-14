@@ -1,46 +1,128 @@
 <html>
 	<head>
+	    <title>Gee-Mail Challenge</title>
 		<script src="js/mail-generator.js"></script>
 		<link href="css/style.css" rel="stylesheet" media="screen">
     <script>
       window.onload = function(){
         // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
         // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
-      for(var i = 0; i < window.geemails.length; i++) {
-      	console.log(window.geemails[i]);
+      
+
+      	// devleague tutor session notes 8/7/15
+      	// 1. targetting elements
+      	// 2. Getting Data?
+      	// 3. Creating Elements with Javascript
+      	// 4. Appending ^elements to index.html
+
+      	// var mainDiv = document.getElementById ("main");
+      	// for(var i = 0; i < numbers.length; i++) {
+      		//create container
+      		//var valueContainer = document.createElement('div');
+      		//valueContainer.classList.add('mail');
+      		//valueContainer.addEventListener('click', function(event){
+      			//console.log(event);
+      		//});
+
+      		/*
+
+      		click
+      		mousedown
+      		mouseup
+      		mouseover
+
+      		*/
+
+      	// create sender value
+      	// var valueDiv = document.createElement("p");
+      	//valueDiv.classList.add('sender');
+      	// var valueText = document.createTextNode(numbers[i]);
+
+      	// valueDiv.appendChild (valueText);
+      	// valueContainer.appendChild(valueDiv);
+      	//mainDiv.appendChilc(valueContainer);
+      		//}
+
+      	//notes from devleage
+      	//mainDiv.innerHTML = "Stuff into the DIV"
 
       	//returns element that has ID attribute with the specified value
       	//variable to store method
+
+      	for(var i = 0; i < window.geemails.length; i++) {
+      		console.log(window.geemails[i]);
+
       var container = document.getElementById("main");
 
       //populate sender info
       var senderElement = document.createElement("div");
+      senderElement.classList.add('sender');
+
+      //populate date info
+      var dateElement = document.createElement("div");
+      dateElement.classList.add('date');
 
       //populate subject info
       var subjectElement = document.createElement("div");
+      subjectElement.classList.add('subject');
 
       //populate body info
       var bodyElement = document.createElement("div");
+      bodyElement.classList.add('body');
+
+
 
       //access subject objects through window.geemails
       senderElement.innerHTML = window.geemails[i].sender;
+      dateElement.innerHTML = window.geemails[i].date;
       subjectElement.innerHTML = window.geemails[i].subject;
       bodyElement.innerHTML = window.geemails[i].body;
 
+
       //append subject objects into container
       container.appendChild(senderElement);
+      container.appendChild(dateElement);
       container.appendChild(subjectElement);
       container.appendChild(bodyElement);
 
   		}
+
+  		var allEmailBody = document.getElementsByClassName('subject');
+  		for (var i = 0; i < allEmailBody.length; i++) {
+  			allEmailBody[i].addEventListener(captureClick);
+  		}
+
+  		allEmailBody[i].addEventListener('click', captureClick);
+
+  		function captureClick (event) {
+  			if (display === "none") {
+  				allEmailBody.classList.add(bodyShow);
+  			}
+  			else {
+  				allEmailBody.classList.remove(bodyShow);
+  			}
+  		}
+
   	};
     </script>
-    <title>Gee-Mail Challenge</title>
 	</head>
 	<body>
 	<h1>GeeMail</h1>
 
+		<!--id "main" used for getElementId-->
 		<div class="container" id="main">
+			<!--to manipulate sender elements-->
+			<div class="sender">
+			</div>
+			<!--to manipulate date elements-->
+			<div class="date">
+			</div>
+			<!--to manipulate subject elements-->
+			<div class="subject" id="subjectId">
+			</div>
+			<!--to manipulate body elements-->
+			<div class="body" id="hideBody">
+			</div>
 		</div>
 
 	</body>

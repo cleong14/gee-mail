@@ -7,6 +7,47 @@ h1 {
 	margin: auto;
 }
 
-#main {
+.sender {
+	text-align: left;
+	float: left;
+	margin-right: 20px;
+	display: inline-block;
+}
 
+.date {
+	text-align: right;
+	float: right;
+	display: inline-block;
+}
+
+.subject {
+	text-align: right;
+	clear: both;
+	display: inline-block;
+	margin-left: 200px;
+	margin-right: 200px;
+	position: relative;
+
+}
+
+.body {
+	display: none; /* initial state */
+}
+
+.bodyShow {
+	text-align: center;
+	clear: both;
+	display: block;
+	margin-left: 300px;
+	margin-right: 300px;
+	position: relative;
+}
+
+#bodyId {
+	display: none;
+}
+
+ * {
+	border-style: dashed;
+	border-width: 1px;
 }
