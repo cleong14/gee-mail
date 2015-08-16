@@ -2,9 +2,13 @@ h1 {
 	text-align: center;
 }
 
-.container {
-	position: relative;
-	margin: auto;
+h2 {
+	text-align: center;
+}
+
+.mail {
+	position: ;
+	margin: ;
 }
 
 .sender {
@@ -34,17 +38,13 @@ h1 {
 	display: none; /* initial state */
 }
 
-.bodyShow {
+.body.show {
 	text-align: center;
 	clear: both;
-	display: block;
+	display: inline-block;
 	margin-left: 300px;
 	margin-right: 300px;
 	position: relative;
-}
-
-#bodyId {
-	display: none;
 }
 
  * {
