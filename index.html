@@ -45,25 +45,33 @@
 
   		}
 
-  		var emailSubjectBody = document.getElementsByClassName("emailSubjectBody");
-  		console.log("emailSubjectBody class divs", emailSubjectBody);
+  		//var emailSubjectBody = document.getElementsByClassName('emailSubjectBody');
+  		//console.log('emailSubjectBody class divs', emailSubjectBody);
 
-  		for (var i = 0; i < emailSubjectBody.length; i++) {
-  			emailSubjectBody[i].addEventListener("click", showEmailBody);
+  		//for (var i = 0; i < emailSubjectBody.length; i++) {
+  			//emailSubjectBody[i].addEventListener('click', showEmailBody);
+  		//}
+
+  		//function showEmailBody (click) {
+  			//console.log(click);
+  			//console.log(this);
+
+  			//var emailBody = this.querySelectorAll('.body')[0];
+
+  			//if (body.classList.contains('show') === false) {
+  				//body.classList.add('show');
+  			//} else {
+  				//body.classList.remove('show');
+  			//}
+  		//}
+
+  		this.toggle = function (event) {
+  			var el = this.body;
+  			this.body.style.display = "none";
+  			console.log(el);
   		}
 
-  		function showEmailBody (event) {
-  			console.log(event);
-  			console.log(this);
-
-  			var emailBody = this.querySelectorAll(".body")[0];
-
-  			if (body.classList.contains("show") === false) {
-  				body.classList.add("show");
-  			} else {
-  				body.classList.remove("show");
-  			}
-  		}
+  		this.body.addEventListener('click', this.toggle.bind(this));
 
   	};
     </script>

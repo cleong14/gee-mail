@@ -7,14 +7,12 @@ h2 {
 }
 
 .mail {
-	position: ;
-	margin: ;
+	
 }
 
 .sender {
 	text-align: left;
 	float: left;
-	margin-right: 20px;
 	display: inline-block;
 }
 
@@ -25,7 +23,7 @@ h2 {
 }
 
 .subject {
-	text-align: right;
+	text-align: center;
 	clear: both;
 	display: inline-block;
 	margin-left: 200px;
@@ -38,7 +36,7 @@ h2 {
 	display: none; /* initial state */
 }
 
-.body.show {
+.bodyShow {
 	text-align: center;
 	clear: both;
 	display: inline-block;
