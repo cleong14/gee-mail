@@ -6,8 +6,13 @@ h2 {
 	text-align: center;
 }
 
-.mail {
-	
+.container {
+
+}
+
+.subjectLine {
+	display: inline-block;
+	border-width: ;
 }
 
 .sender {
@@ -16,24 +21,31 @@ h2 {
 	display: inline-block;
 }
 
-.date {
-	text-align: right;
-	float: right;
-	display: inline-block;
-}
-
 .subject {
-	text-align: center;
+	text-align: left;
 	clear: both;
 	display: inline-block;
 	margin-left: 200px;
 	margin-right: 200px;
-	position: relative;
 
+}
+
+.date {
+	text-align: left;
+	float: right;
+	display: inline-block;
 }
 
 .body {
 	display: none; /* initial state */
+}
+
+.show {
+	display: inline-block;
+}
+
+.showBody {
+	display: inline-block;
 }
 
 .bodyShow {

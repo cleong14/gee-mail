@@ -8,97 +8,175 @@
         // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
         // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
 
-      for(var i = 0; i < window.geemails.length; i++) {
+      	for(var i = 0; i < window.geemails.length; i++) {
+      		console.log(window.geemails[i]);
 
-      var wholeContainer = document.getElementById("main");
+      //entire container
+      var container = document.getElementById("main");
+
+      //for the whole email subjectLine
+      var subjectLine = document.createElement("tr");
+      subjectLine.classList.add("subjectLine");
+
 
       //populate sender info
-      var senderElement = document.createElement("div");
-      senderElement.classList.add('sender');
-
-      //populate date info
-      var dateElement = document.createElement("div");
-      dateElement.classList.add('date');
+      var sender = document.createElement("th");
+      sender.classList.add('sender');
 
       //populate subject info
-      var subjectElement = document.createElement("div");
-      subjectElement.classList.add('subject');
+      var subject = document.createElement("th");
+      subject.classList.add('subject');
+
+      //populate date info
+      var date = document.createElement("th");
+      date.classList.add('date');
 
       //populate body info
-      var bodyElement = document.createElement("div");
-      bodyElement.classList.add('body');
-
+      var body = document.createElement("th");
+      body.classList.add('body');
 
 
       //access subject objects through window.geemails
-      senderElement.innerHTML = window.geemails[i].sender;
-      dateElement.innerHTML = window.geemails[i].date;
-      subjectElement.innerHTML = window.geemails[i].subject;
-      bodyElement.innerHTML = window.geemails[i].body;
+      sender.innerHTML = window.geemails[i].sender;
+      subject.innerHTML = window.geemails[i].subject;
+      date.innerHTML = window.geemails[i].date;
+      body.innerHTML = window.geemails[i].body;
 
 
       //append subject objects into container
-      wholeContainer.appendChild(senderElement);
-      wholeContainer.appendChild(dateElement);
-      wholeContainer.appendChild(subjectElement);
-      wholeContainer.appendChild(bodyElement);
+      container.appendChild(subjectLine);
+      subjectLine.appendChild(sender);
+      subjectLine.appendChild(subject);
+      subjectLine.appendChild(date);
+      subjectLine.appendChild(body);
+
+    //  subjectLine.onclick = function () {
+    //  	var toggleAppendBody = document.getElementById("subjectLine");
+    //  	if (subjectLine.appendChild(body) == false) {
+    //  		subjectLine.appendChild(body) = true;
+    //  	} else {
+    //  		subjectLine.appendChild(body) = false;
+    //  	}
+    //  }
+
+    	// hide/show email body
+      subjectLine.onclick = function() {
+      var toggleBody = document.getElementById("body");
+      if (toggleBody.className == "body") {
+      	toggleBody.className = "show";
+      } else {
+      	toggleBody.className = "body";
+      }
+    //  toggleBody.addEventListener("click", function() {
+    //  	if (body.innerHTML.style.display == "none") {
+    // 		body.innerHTML.style.display = "inline-block";
+    //  	} else {
+    //  		body.innerHTML.style.display = "none";
+    //  	}
+    //  }, false);
+    //  if (toggleBody.style.display == "none") {
+     // 	toggleBody.style.display = "inline-block";
+    //  } else {
+     // 	toggleBody.style.display = "none";
+     // 		}
+  		};
 
   		}
 
-  		//var emailSubjectBody = document.getElementsByClassName('emailSubjectBody');
-  		//console.log('emailSubjectBody class divs', emailSubjectBody);
+  		//var container = document.createElement("div");
+  		//container.className = ("container");
+  		//container.onclick = function() {
+  			//var emailSubjectLine = getElementById("emailSubjectLine", + index);
+  		//	if (emailSubjectLine.style.display == "none") {
+  		//		emailSubjectLine.style.display = "inline-block";
+  		//	} else {
+  		//		emailSubjectLine.style.display = "none"
+  		//	}
+  		//};
 
-  		//for (var i = 0; i < emailSubjectBody.length; i++) {
-  			//emailSubjectBody[i].addEventListener('click', showEmailBody);
-  		//}
-
-  		//function showEmailBody (click) {
-  			//console.log(click);
-  			//console.log(this);
-
-  			//var emailBody = this.querySelectorAll('.body')[0];
-
-  			//if (body.classList.contains('show') === false) {
-  				//body.classList.add('show');
-  			//} else {
-  				//body.classList.remove('show');
+  		//document.getElementById("subjectId").addEventListener("click", showMeBody);
+  		
+  		//function showMeBody () {
+  			//if (document.getElementById("bodyId").style.display = "none") {
+  				//document.getElementById("bodyId").style.display = "inline-block";
+  			//}
+  			//else {
+  				//document.getElementById("bodyId").style.display = "none";
   			//}
   		//}
 
-  		this.toggle = function (event) {
-  			var el = this.body;
-  			this.body.style.display = "none";
-  			console.log(el);
-  		}
+  		//var allEmailBody = document.getElementsByClassName('body');
+  		//for (var i = 0; i < allEmailBody.length; i++) {
+  			//allEmailBody[i].addEventListener(captureClick);
+  		//}
 
-  		this.body.addEventListener('click', this.toggle.bind(this));
+  		//allEmailBody[i].addEventListener('click', captureClick);
+
+  		//function captureClick (event) {
+  			//if (display === "none") {
+  				//allEmailBody.classList.add(bodyShow);
+  			//}
+  			//else {
+  			//	allEmailBody.classList.remove(bodyShow);
+  			//}
+  		//}
+
+  		//var emailCount = window.geemails.length;
+  		//function incrementEmailCount () {
+  		//	count++;
+  		//}
+  		//console.log(emailCount);
+  		//incrementEmailCount();
+  		//console.log(count);
 
   	};
     </script>
 	</head>
 	<body>
-	<h1>GeeMail</h1>
+		<table class="container" id="main">
+			<thead>
+				<tr>
+					<th colspan="3">GeeMail</th>
+				</tr>
+				<tr>
+					<th colspan="3">Inbox</th>
+				</tr>
+				<tr class="subjectLine" id="subjectLine">
+					<th class="sender"></th>
+					<th class="subject"></th>
+					<th class="date"></th>
+					<th class="body" id="body"></th>
+				</tr>
+			</thead>
+			<!--<tbody>
+				<tr class="subjectLine">
+					<td class="sender">Sender</td>
+					<td class="subject">Subject</td>
+					<td class="body">Body</td>
+					<td class="date">Date</td>
+				</tr>
+			</tbody>-->
+		</table>
+<!--	<h1>GeeMail</h1>
 	<h2>Inbox</h2>
-
+-->
 		<!--id "main" used for getElementId-->
-		<div class="container" id="main">
+<!--		<div class="container" id="main">
+			<div class="emailSubjectLine" id="emailSubjectLine">
+-->
+				<!--to manipulate sender elements-->
+<!--				<p class="sender"></p>
 
-			<!--to manipulate sender elements-->
-			<div class="sender"></div>
+-->				<!--to manipulate date elements-->
+<!--				<p class="date"></p>
 
-			<!--to manipulate date elements-->
-			<div class="date"></div>
+-->				<!--to manipulate subject elements-->
+<!--				<p class="subject" id="subjectId"></p>
 
-			<div class="emailSubjectBody">
-				<!--to manipulate subject elements-->
-				<div class="subject" id="subjectId"></div>
-			</div>
-
-			<div class="emailSubjectBody">
-				<!--to manipulate body elements-->
-				<div class="body" id="bodyId"></div>
+-->				<!--to manipulate body elements-->
+<!--				<p class="body" id="bodyId"></p>
 			</div>
 		</div>
-
+-->
 	</body>
 </html>
