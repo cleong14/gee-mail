@@ -12,13 +12,13 @@
       var container = document.getElementById("main");
 
 
-      // all th with body class
-      var bodyElements = document.getElementsByClassName("body");
-      console.log("bodyElements class th", bodyElements);
+      // tr with all elements
+      var subjectLineElements = document.getElementsByClassName("subjectLine");
+      console.log("subjectLineElements class th", subjectLineElements);
 
       // attach event listener to each body th using for loop
-      for (var i = 0; i < bodyElements.length; i++) {
-      	bodyElements[i].addEventListener("click", toggleBodyDisplay);
+      for (var i = 0; i < subjectLineElements.length; i++) {
+      	subjectLineElements[i].addEventListener("click", toggleBodyDisplay);
       }
 
       function toggleBodyDisplay (event) {
