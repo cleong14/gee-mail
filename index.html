@@ -8,11 +8,28 @@
         // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
         // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
 
+      //entire container
+      var container = document.getElementById("main");
+
+
+      // all th with body class
+      var bodyElements = document.getElementsByClassName("body");
+      console.log("bodyElements class th", bodyElements);
+
+      // attach event listener to each body th using for loop
+      for (var i = 0; i < bodyElements.length; i++) {
+      	bodyElements[i].addEventListener("click", toggleBodyDisplay);
+      }
+
+      function toggleBodyDisplay (event) {
+      	console.log(event);
+      	console.log(this);
+      }
+
+
       	for(var i = 0; i < window.geemails.length; i++) {
       		console.log(window.geemails[i]);
 
-      //entire container
-      var container = document.getElementById("main");
 
       //for the whole email subjectLine
       var subjectLine = document.createElement("tr");
@@ -61,7 +78,7 @@
 
     	// hide/show email body
       subjectLine.onclick = function() {
-      var toggleBody = document.getElementById("body");
+      var toggleBody = document.getElementById("bodyId");
       if (toggleBody.className == "body") {
       	toggleBody.className = "show";
       } else {
@@ -145,7 +162,7 @@
 					<th class="sender"></th>
 					<th class="subject"></th>
 					<th class="date"></th>
-					<th class="body" id="body"></th>
+					<th class="body" id="bodyId"></th>
 				</tr>
 			</thead>
 			<!--<tbody>
