@@ -8,13 +8,54 @@
         // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
         // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
 
+        // get all divs with the .`child` class
+var children = document.getElementsByClassName('child');
+console.log('children class divs', children);
+
+
+// iterate through the collection of children divs, attach
+// an event listener to each one.
+for (var i = 0; i < children.length; i++) {
+    children[i].addEventListener('click', showSecretToy);
+}
+
+
+// this is the event handler for the event listener above.
+// when an event triggers the an `event` object is given to you.
+// In side of the event handler function, you can use the `this`
+// keyword to refer to the specific div that triggered the event.
+function showSecretToy (event) {
+    console.log(event); // so much information here!
+    console.log(this); // mouse-over this console.log in chrome to see the element on the page
+    
+    /* 
+        the answer...
+        first, find the secret toy relative to each `children` div,         
+        we use the `this` keyword as a starting point.
+    */
+    var secretToy = this.querySelectorAll('.secret-toy')[0];
+    
+    // check if the secretToy has a class `show`
+    if (secretToy.classList.contains('show') === false) {
+        
+        // doesn't exists, add the class `show`
+        secretToy.classList.add('show');
+        
+    } else {
+        
+        // if it has it, lets remove it.
+        secretToy.classList.remove('show');
+    }
+}
+
+
       //entire container
       var container = document.getElementById("main");
 
 
       // tr with all elements
       var subjectLineElements = document.getElementsByClassName("subjectLine");
-      console.log("subjectLineElements class th", subjectLineElements);
+      console.log("subjectLineElements class tr", subjectLineElements);
 
       // attach event listener to each body th using for loop
       for (var i = 0; i < subjectLineElements.length; i++) {
@@ -24,6 +65,14 @@
       function toggleBodyDisplay (event) {
       	console.log(event);
       	console.log(this);
+
+      	var bodyToggle = this.querySelectorAll(".body")[0];
+
+      	if (bodyToggle.classList.contains("show") === false) {
+      		bodyToggle.classList.add("show");
+      	} else {
+      		bodyToggle.classList.remove("show");
+      	}
       }
 
 
@@ -77,13 +126,13 @@
     //  }
 
     	// hide/show email body
-      subjectLine.onclick = function() {
-      var toggleBody = document.getElementById("bodyId");
-      if (toggleBody.className == "body") {
-      	toggleBody.className = "show";
-      } else {
-      	toggleBody.className = "body";
-      }
+    //  subjectLine.onclick = function() {
+    //  var toggleBody = document.getElementById("bodyId");
+    //  if (toggleBody.className == "body") {
+    //  	toggleBody.className = "show";
+    //  } else {
+    //  	toggleBody.className = "body";
+    //  }
     //  toggleBody.addEventListener("click", function() {
     //  	if (body.innerHTML.style.display == "none") {
     // 		body.innerHTML.style.display = "inline-block";
@@ -98,7 +147,7 @@
      // 		}
   		};
 
-  		}
+  	//	}
 
   		//var container = document.createElement("div");
   		//container.className = ("container");
@@ -195,5 +244,15 @@
 			</div>
 		</div>
 -->
+<div id="family1">
+    <div class="child">
+        <h2 class="name">Julie</h2>
+        <p class="secret-toy">Comic Book</p>
+    </div>
+    <div class="child">
+        <h2 class="name">Todd</h2>
+        <p class="secret-toy">500 piece puzzle</p>
+    </div>
+</div>
 	</body>
 </html>
