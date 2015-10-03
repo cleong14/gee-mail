@@ -1,258 +1,132 @@
 <html>
-	<head>
-	    <title>Gee-Mail Challenge</title>
-		<script src="js/mail-generator.js"></script>
-		<link href="css/style.css" rel="stylesheet" media="screen">
+  <head>
+    <script src="js/mail-generator.js"></script>
+    <link href="css/style.css" rel="stylesheet" media="screen">
     <script>
       window.onload = function(){
         // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
         // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
 
-        // get all divs with the .`child` class
-var children = document.getElementsByClassName('child');
-console.log('children class divs', children);
+        // add header
+        // function addHeader (elementType, newHeaderId, content) {
+        //   var newHeader = document.createElement(elementType);
+        //   newHeader.id = newHeaderId;
+        //   document.body.appendChild(newHeader);
+        //   document.getElementById(newHeaderId).innerHTML = content;
+        // }
 
+        // addHeader ('header', 'header', 'Gee-Mail');
 
-// iterate through the collection of children divs, attach
-// an event listener to each one.
-for (var i = 0; i < children.length; i++) {
-    children[i].addEventListener('click', showSecretToy);
-}
+        // add container div function
+        // function addContainer (elementType, newContainerId) {
+        //   var newContainer = document.createElement(elementType);
+        //   newContainer.id = newContainerId;
+        //   document.body.appendChild(newContainer);
+        // }
 
+        // addContainer ('div', 'container');
 
-// this is the event handler for the event listener above.
-// when an event triggers the an `event` object is given to you.
-// In side of the event handler function, you can use the `this`
-// keyword to refer to the specific div that triggered the event.
-function showSecretToy (event) {
-    console.log(event); // so much information here!
-    console.log(this); // mouse-over this console.log in chrome to see the element on the page
-    
-    /* 
-        the answer...
-        first, find the secret toy relative to each `children` div,         
-        we use the `this` keyword as a starting point.
-    */
-    var secretToy = this.querySelectorAll('.secret-toy')[0];
-    
-    // check if the secretToy has a class `show`
-    if (secretToy.classList.contains('show') === false) {
-        
-        // doesn't exists, add the class `show`
-        secretToy.classList.add('show');
-        
-    } else {
-        
-        // if it has it, lets remove it.
-        secretToy.classList.remove('show');
-    }
-}
+        // add new elements function
 
+        // function addNewElement (targetId, newElementId, elementType, content) {
+        // var newElement = document.createElement(elementType);
+        // newElement.id = newElementId;
+        // document.getElementById(targetId).appendChild(newElement);
+        // document.getElementById(newElementId).innerHTML = content;
+        // }
 
-      //entire container
-      var container = document.getElementById("main");
+        // // add sender element
+        // addNewElement ('container', 'sender', 'p', 'Sender Text');
 
+        // // add subject element
+        // addNewElement ('container', 'subject', 'p', 'Subject Text');
 
-      // tr with all elements
-      var subjectLineElements = document.getElementsByClassName("subjectLine");
-      console.log("subjectLineElements class tr", subjectLineElements);
+        // // add emailBody element
+        // addNewElement ('container', 'emailBody', 'p', 'Email Body Text');
 
-      // attach event listener to each body th using for loop
-      for (var i = 0; i < subjectLineElements.length; i++) {
-      	subjectLineElements[i].addEventListener("click", toggleBodyDisplay);
-      }
+        // // add date element
+        // addNewElement ('container', 'date', 'p', 'Date Text');
 
-      function toggleBodyDisplay (event) {
-      	console.log(event);
-      	console.log(this);
+            // create container and give it an id
+            var container = document.createElement('div');
+            container.id = 'container';
 
-      	var bodyToggle = this.querySelectorAll(".body")[0];
+        function loadMessageData () {
+          for (var i = 0; i < window.geemails.length; i++) {
 
-      	if (bodyToggle.classList.contains("show") === false) {
-      		bodyToggle.classList.add("show");
-      	} else {
-      		bodyToggle.classList.remove("show");
-      	}
-      }
+            // create sender, subject, emailBody, and date element with ids
+            var sender = document.createElement('p');
+            sender.id = 'sender';
 
+            var subject = document.createElement('p');
+            subject.id = 'subject';
 
-      	for(var i = 0; i < window.geemails.length; i++) {
-      		console.log(window.geemails[i]);
+            var date = document.createElement('p');
+            date.id = 'date';
 
+            var emailBody = document.createElement('span');
+            emailBody.id = 'emailBody';
+            emailBody.className = 'emailClass';
 
-      //for the whole email subjectLine
-      var subjectLine = document.createElement("tr");
-      subjectLine.classList.add("subjectLine");
+            // create var for sender, subject, body, and date innerHTML data
+            var senderData = window.geemails[i].sender;
+            var subjectData = window.geemails[i].subject;
+            var dateData = window.geemails[i].date;
+            var emailBodyData = window.geemails[i].body;
 
+            // add innerHTML text to elements
+            sender.innerHTML = senderData;
+            subject.innerHTML = subjectData;
+            date.innerHTML = dateData;
+            emailBody.innerHTML = emailBodyData;
 
-      //populate sender info
-      var sender = document.createElement("th");
-      sender.classList.add('sender');
+            // append elements into container and finally into body
+            container.appendChild(sender);
+            container.appendChild(subject);
+            container.appendChild(date);
+            container.appendChild(emailBody);
+            document.body.appendChild(container);
+          }
+        }
 
-      //populate subject info
-      var subject = document.createElement("th");
-      subject.classList.add('subject');
+        // invoke function to load all content
+        loadMessageData();
 
-      //populate date info
-      var date = document.createElement("th");
-      date.classList.add('date');
+        //create variable for subject elements and emailBody elements
+        var subjectId = document.querySelectorAll('#subject');
+        var emailBodyId = document.querySelectorAll('#emailBody');
 
-      //populate body info
-      var body = document.createElement("th");
-      body.classList.add('body');
+        //create function to add event listeners to show emailBody
+        function showHideBody (subjectIndex, emailBodyIndex) {
+        for (var i = 0; i < subjectId.length; i++) {
+            subjectId[subjectIndex].addEventListener('click', function(event) {
+                emailBodyId[emailBodyIndex].className += '.show';
+            })
 
+            subjectId[subjectIndex].addEventListener('mouseout', function(event) {
+                console.log(subjectId[subjectIndex]);
+                emailBodyId[emailBodyIndex].className = '.emailClass';
+            })
+        }}
 
-      //access subject objects through window.geemails
-      sender.innerHTML = window.geemails[i].sender;
-      subject.innerHTML = window.geemails[i].subject;
-      date.innerHTML = window.geemails[i].date;
-      body.innerHTML = window.geemails[i].body;
+        //invoke function to add event listeners to show emailBody
+        showHideBody (0, 0);
+        showHideBody (1, 1);
+        showHideBody (2, 2);
+        showHideBody (3, 3);
+        showHideBody (4, 4);
+        showHideBody (5, 5);
+        showHideBody (6, 6);
+        showHideBody (7, 7);
+        showHideBody (8, 8);
+        showHideBody (9, 9);
 
-
-      //append subject objects into container
-      container.appendChild(subjectLine);
-      subjectLine.appendChild(sender);
-      subjectLine.appendChild(subject);
-      subjectLine.appendChild(date);
-      subjectLine.appendChild(body);
-
-    //  subjectLine.onclick = function () {
-    //  	var toggleAppendBody = document.getElementById("subjectLine");
-    //  	if (subjectLine.appendChild(body) == false) {
-    //  		subjectLine.appendChild(body) = true;
-    //  	} else {
-    //  		subjectLine.appendChild(body) = false;
-    //  	}
-    //  }
-
-    	// hide/show email body
-    //  subjectLine.onclick = function() {
-    //  var toggleBody = document.getElementById("bodyId");
-    //  if (toggleBody.className == "body") {
-    //  	toggleBody.className = "show";
-    //  } else {
-    //  	toggleBody.className = "body";
-    //  }
-    //  toggleBody.addEventListener("click", function() {
-    //  	if (body.innerHTML.style.display == "none") {
-    // 		body.innerHTML.style.display = "inline-block";
-    //  	} else {
-    //  		body.innerHTML.style.display = "none";
-    //  	}
-    //  }, false);
-    //  if (toggleBody.style.display == "none") {
-     // 	toggleBody.style.display = "inline-block";
-    //  } else {
-     // 	toggleBody.style.display = "none";
-     // 		}
-  		};
-
-  	//	}
-
-  		//var container = document.createElement("div");
-  		//container.className = ("container");
-  		//container.onclick = function() {
-  			//var emailSubjectLine = getElementById("emailSubjectLine", + index);
-  		//	if (emailSubjectLine.style.display == "none") {
-  		//		emailSubjectLine.style.display = "inline-block";
-  		//	} else {
-  		//		emailSubjectLine.style.display = "none"
-  		//	}
-  		//};
-
-  		//document.getElementById("subjectId").addEventListener("click", showMeBody);
-  		
-  		//function showMeBody () {
-  			//if (document.getElementById("bodyId").style.display = "none") {
-  				//document.getElementById("bodyId").style.display = "inline-block";
-  			//}
-  			//else {
-  				//document.getElementById("bodyId").style.display = "none";
-  			//}
-  		//}
-
-  		//var allEmailBody = document.getElementsByClassName('body');
-  		//for (var i = 0; i < allEmailBody.length; i++) {
-  			//allEmailBody[i].addEventListener(captureClick);
-  		//}
-
-  		//allEmailBody[i].addEventListener('click', captureClick);
-
-  		//function captureClick (event) {
-  			//if (display === "none") {
-  				//allEmailBody.classList.add(bodyShow);
-  			//}
-  			//else {
-  			//	allEmailBody.classList.remove(bodyShow);
-  			//}
-  		//}
-
-  		//var emailCount = window.geemails.length;
-  		//function incrementEmailCount () {
-  		//	count++;
-  		//}
-  		//console.log(emailCount);
-  		//incrementEmailCount();
-  		//console.log(count);
-
-  	};
+      };
     </script>
-	</head>
-	<body>
-		<table class="container" id="main">
-			<thead>
-				<tr>
-					<th colspan="3">GeeMail</th>
-				</tr>
-				<tr>
-					<th colspan="3">Inbox</th>
-				</tr>
-				<tr class="subjectLine" id="subjectLine">
-					<th class="sender"></th>
-					<th class="subject"></th>
-					<th class="date"></th>
-					<th class="body" id="bodyId"></th>
-				</tr>
-			</thead>
-			<!--<tbody>
-				<tr class="subjectLine">
-					<td class="sender">Sender</td>
-					<td class="subject">Subject</td>
-					<td class="body">Body</td>
-					<td class="date">Date</td>
-				</tr>
-			</tbody>-->
-		</table>
-<!--	<h1>GeeMail</h1>
-	<h2>Inbox</h2>
--->
-		<!--id "main" used for getElementId-->
-<!--		<div class="container" id="main">
-			<div class="emailSubjectLine" id="emailSubjectLine">
--->
-				<!--to manipulate sender elements-->
-<!--				<p class="sender"></p>
+    <title>Gee-Mail</title>
+  </head>
+  <body> 
+    <header id="header">Gee-Mail</header><!-- #header -->
 
--->				<!--to manipulate date elements-->
-<!--				<p class="date"></p>
-
--->				<!--to manipulate subject elements-->
-<!--				<p class="subject" id="subjectId"></p>
-
--->				<!--to manipulate body elements-->
-<!--				<p class="body" id="bodyId"></p>
-			</div>
-		</div>
--->
-<div id="family1">
-    <div class="child">
-        <h2 class="name">Julie</h2>
-        <p class="secret-toy">Comic Book</p>
-    </div>
-    <div class="child">
-        <h2 class="name">Todd</h2>
-        <p class="secret-toy">500 piece puzzle</p>
-    </div>
-</div>
-	</body>
+  </body>
 </html>

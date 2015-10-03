@@ -1,96 +1,11 @@
-h1 {
-	text-align: center;
+#subject {
+	display: ;
 }
 
-h2 {
-	text-align: center;
+.emailClass {
+	display: none; /*inherit state*/
 }
 
-.container {
-
-}
-
-.subjectLine {
-	display: inline-block;
-	border-width: ;
-}
-
-.sender {
-	text-align: left;
-	float: left;
-	display: inline-block;
-}
-
-.subject {
-	text-align: left;
-	clear: both;
-	display: inline-block;
-	margin-left: 200px;
-	margin-right: 200px;
-
-}
-
-.date {
-	text-align: left;
-	float: right;
-	display: inline-block;
-}
-
-tr.subjectLine th.body {
-	display: none;
-}
-
-tr.subjectLine th.body.show {
-	display: inline-block;
-}
-
-.body {
-	display: none; /* initial state */
-}
-
-.show {
-	display: inline-block;
-}
-
-.showBody {
-	display: inline-block;
-}
-
-.bodyShow {
-	text-align: center;
-	clear: both;
-	display: inline-block;
-	margin-left: 300px;
-	margin-right: 300px;
-	position: relative;
-}
-
- * {
-	border-style: dashed;
-	border-width: 1px;
-}
-
-div#family1, div#family2 {
-    background-color: blue;
-    width: 100%;
-    height: 150px;
-}
-
-div.child {
-    margin-top: 5px;
-    height: 30px;
-    background-color: red;
-}
-
-div.child h2.name,
-div.child p.secret-toy {
-    display: inline;
-}
-
-div.child p.secret-toy {
-    display: none; /* initial state */
-}
-
-div.child p.secret-toy.show {
-    display: inline
+.emailClass.show {
+	display: inline;
 }
