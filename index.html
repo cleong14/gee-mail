@@ -7,50 +7,18 @@
         // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
         // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
 
-        // add header
-        // function addHeader (elementType, newHeaderId, content) {
-        //   var newHeader = document.createElement(elementType);
-        //   newHeader.id = newHeaderId;
-        //   document.body.appendChild(newHeader);
-        //   document.getElementById(newHeaderId).innerHTML = content;
-        // }
-
-        // addHeader ('header', 'header', 'Gee-Mail');
-
-        // add container div function
-        // function addContainer (elementType, newContainerId) {
-        //   var newContainer = document.createElement(elementType);
-        //   newContainer.id = newContainerId;
-        //   document.body.appendChild(newContainer);
-        // }
-
-        // addContainer ('div', 'container');
-
-        // add new elements function
-
-        // function addNewElement (targetId, newElementId, elementType, content) {
-        // var newElement = document.createElement(elementType);
-        // newElement.id = newElementId;
-        // document.getElementById(targetId).appendChild(newElement);
-        // document.getElementById(newElementId).innerHTML = content;
-        // }
-
-        // // add sender element
-        // addNewElement ('container', 'sender', 'p', 'Sender Text');
-
-        // // add subject element
-        // addNewElement ('container', 'subject', 'p', 'Subject Text');
-
-        // // add emailBody element
-        // addNewElement ('container', 'emailBody', 'p', 'Email Body Text');
-
-        // // add date element
-        // addNewElement ('container', 'date', 'p', 'Date Text');
 
             // create container and give it an id
             var container = document.createElement('div');
             container.id = 'container';
 
+            // create header element, give innerHTML, and append to document body
+            var header = document.createElement('header');
+            header.id = 'header';
+            header.innerHTML = 'Gee-mail';
+            document.body.appendChild(header);
+
+            // function to load message data to screen
         function loadMessageData () {
           for (var i = 0; i < window.geemails.length; i++) {
 
@@ -60,6 +28,7 @@
 
             var subject = document.createElement('p');
             subject.id = 'subject';
+            subject.className = 'subjectClass';
 
             var date = document.createElement('p');
             date.id = 'date';
@@ -76,7 +45,7 @@
 
             // add innerHTML text to elements
             sender.innerHTML = senderData;
-            subject.innerHTML = subjectData;
+            subject.innerHTML = subjectData + '<br>';
             date.innerHTML = dateData;
             emailBody.innerHTML = emailBodyData;
 
@@ -84,7 +53,7 @@
             container.appendChild(sender);
             container.appendChild(subject);
             container.appendChild(date);
-            container.appendChild(emailBody);
+            subject.appendChild(emailBody);
             document.body.appendChild(container);
           }
         }
@@ -92,41 +61,45 @@
         // invoke function to load all content
         loadMessageData();
 
-        //create variable for subject elements and emailBody elements
-        var subjectId = document.querySelectorAll('#subject');
-        var emailBodyId = document.querySelectorAll('#emailBody');
+        // function to show inbox count
+        function inboxCount () {
+          var inboxElement = document.createElement('div');
+          inboxElement.id = 'inboxElement';
 
-        //create function to add event listeners to show emailBody
-        function showHideBody (subjectIndex, emailBodyIndex) {
+          for (var i =0; i < window.geemails.length; i++) {
+  
+          }
+          inboxElement.innerHTML = window.geemails.length;
+          header.appendChild(inboxElement);
+        }
+
+        // invoke function to show inbox count
+        inboxCount();
+
+        // hide and show email body
+
+        var subjectId = document.getElementsByClassName('subjectClass');
+
         for (var i = 0; i < subjectId.length; i++) {
-            subjectId[subjectIndex].addEventListener('click', function(event) {
-                emailBodyId[emailBodyIndex].className += '.show';
-            })
+          subjectId[i].addEventListener('click', function(event) {
+            var messageBodyClass = this.querySelectorAll('.emailClass')[0];
+            console.log(this);
+            messageBodyClass.className += ' show';
+          })
 
-            subjectId[subjectIndex].addEventListener('mouseout', function(event) {
-                console.log(subjectId[subjectIndex]);
-                emailBodyId[emailBodyIndex].className = '.emailClass';
-            })
-        }}
-
-        //invoke function to add event listeners to show emailBody
-        showHideBody (0, 0);
-        showHideBody (1, 1);
-        showHideBody (2, 2);
-        showHideBody (3, 3);
-        showHideBody (4, 4);
-        showHideBody (5, 5);
-        showHideBody (6, 6);
-        showHideBody (7, 7);
-        showHideBody (8, 8);
-        showHideBody (9, 9);
+          subjectId[i].addEventListener('mouseout', function(event) {
+            messageBodyClass = this.querySelectorAll('.emailClass.show')[0];
+            console.log(this);
+            messageBodyClass.className = 'emailClass';
+          })
+        }
 
       };
     </script>
     <title>Gee-Mail</title>
   </head>
   <body> 
-    <header id="header">Gee-Mail</header><!-- #header -->
+
 
   </body>
 </html>
