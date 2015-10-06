@@ -1,5 +1,55 @@
+body {
+	font-family: arial;
+}
+
+header {
+	font-weight: bold;
+	text-align: center;
+	font-size: 35px;
+	background-image: url(http://www.iconsplace.com/download/pink-gmail-login-512.jpg);
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+#headerDiv {
+	text-shadow: 2px 2px #000000;
+	color: red;
+}
+
+#inboxElement {
+	color: black;
+	text-shadow: 2px 2px red;
+}
+
+#container {
+	background: #DCDCDC;
+	background-image: url(http://www.sampsoniaway.org/wp-content/uploads/2010/12/097681-black-ink-grunge-stamp-textures-icon-social-media-logos-gmail-300x300.png);
+	background-position: center;
+	background-repeat: no-repeat;
+	color: #000000;
+	text-shadow: 2px 2px #FFFFFF;
+	font-size: 19px;
+}
+
+#sender {
+	text-align: left;
+	display: inline-block;
+	width: 0px;
+	float: left;
+}
+
+#date {
+	text-align: right;
+	display: inline-block;
+	width: -1px;
+	float: right;
+}
+
 #subject {
-	display: ;
+	text-align: left;
+	display: inline-block;
+	margin-left: 100px;
+	text-indent: 350px;
 }
 
 .emailClass {
@@ -8,4 +58,12 @@
 
 .emailClass.show {
 	display: inline;
+}
+
+p {
+	font-weight: bold;
+}
+
+span {
+	font-weight: normal;
 }

@@ -15,12 +15,23 @@
             // create header element, give innerHTML, and append to document body
             var header = document.createElement('header');
             header.id = 'header';
-            header.innerHTML = 'Gee-mail';
+
+            // create element to go inside header with innerHTML value
+            var headerDiv = document.createElement('div');
+            headerDiv.id = 'headerDiv';
+            headerDiv.innerHTML = 'Gee-Mail';
+
+            // append to header then body
+            header.appendChild(headerDiv);
             document.body.appendChild(header);
 
             // function to load message data to screen
         function loadMessageData () {
           for (var i = 0; i < window.geemails.length; i++) {
+
+            // create subjectLine element
+            var subjectLine = document.createElement('div');
+            subjectLine.id = 'subjectLine';
 
             // create sender, subject, emailBody, and date element with ids
             var sender = document.createElement('p');
@@ -50,10 +61,11 @@
             emailBody.innerHTML = emailBodyData;
 
             // append elements into container and finally into body
-            container.appendChild(sender);
-            container.appendChild(subject);
-            container.appendChild(date);
+            subjectLine.appendChild(sender);
+            subjectLine.appendChild(subject);
+            subjectLine.appendChild(date);
             subject.appendChild(emailBody);
+            container.appendChild(subjectLine);
             document.body.appendChild(container);
           }
         }
@@ -62,37 +74,159 @@
         loadMessageData();
 
         // function to show inbox count
-        function inboxCount () {
+        function inboxCount (elementId) {
+          
+          // create element for inbox count & give it an id
           var inboxElement = document.createElement('div');
           inboxElement.id = 'inboxElement';
 
-          for (var i =0; i < window.geemails.length; i++) {
+          // run for loop to access email items
+          for (var i =0; i < elementId.length; i++) {
   
           }
-          inboxElement.innerHTML = window.geemails.length;
+
+          // make innerHTML geemails.length so it shows total email count
+          inboxElement.innerHTML = elementId.length;
+
+          // append inboxElement to header
           header.appendChild(inboxElement);
         }
 
         // invoke function to show inbox count
-        inboxCount();
+        inboxCount(window.geemails);
 
         // hide and show email body
 
+        // create variable for subject lines
         var subjectId = document.getElementsByClassName('subjectClass');
 
+        // add click event listener to each subject line using for loop to show
+        // email body
         for (var i = 0; i < subjectId.length; i++) {
           subjectId[i].addEventListener('click', function(event) {
+            
+            // create variable for this.query selector all
+            // this used with query selector all and event listener will 
+            // search whatever is clicked to see if anything in that element
+            // has the class emailClass. Don't forget to NEST NEST NEST!
             var messageBodyClass = this.querySelectorAll('.emailClass')[0];
             console.log(this);
+
+            // add show to emailClass (be sure to use += to assign and add)
             messageBodyClass.className += ' show';
           })
 
+          // add mouseout event listener to hide email body again
           subjectId[i].addEventListener('mouseout', function(event) {
+
+            // query selector all is doing the sameas above
+            // dont forget that when using query selector all, you need to use 
+            // an index selector ( [0] )
             messageBodyClass = this.querySelectorAll('.emailClass.show')[0];
             console.log(this);
+
+            // change .show class name back to emailClass (do this by using = instead 
+              // of +=)
             messageBodyClass.className = 'emailClass';
           })
         }
+
+        // create function to be called during each intercal
+        function intervalFunction () {
+          
+          // create newSubjectLine
+          var newSubjectLine = document.createElement('div');
+          newSubjectLine.id = 'subjectLine';
+
+          // variable for new elements with ids to be created each interval
+          var newSender = document.createElement('p');
+          newSender.id = 'sender';
+
+          var newSubject = document.createElement('p');
+          newSubject.id = 'subject';
+          newSubject.className = 'subjectClass';
+
+          var newDate = document.createElement('p');
+          newDate.id = 'date';
+
+          var newBody = document.createElement('span');
+          newBody.id = 'emailBody';
+          newBody.className = 'emailClass';
+
+          // variable for new elements innerHTML content
+          var newSenderData = getNewMessage().sender;
+          var newSubjectData = getNewMessage().subject;
+          var newDateData = getNewMessage().date;
+          var newBodyData = getNewMessage().body;
+
+          // add innerHTML content to new elements
+          newSender.innerHTML = newSenderData;
+          newSubject.innerHTML = newSubjectData + '<br>';
+          newDate.innerHTML = newDateData;
+          newBody.innerHTML = newBodyData;
+
+          // append new elements
+          newSubjectLine.appendChild(newSender);
+          newSubjectLine.appendChild(newSubject);
+          newSubjectLine.appendChild(newDate);
+          newSubject.appendChild(newBody);
+          container.appendChild(newSubjectLine);
+
+          // add event listeners to new elements
+          // create variable for subject lines
+          var subjectId = document.getElementsByClassName('subjectClass');
+
+          // add click event listener to each subject line using for loop to show
+          // email body
+        for (var i = 0; i < subjectId.length; i++) {
+          subjectId[i].addEventListener('click', function(event) {
+            
+            // create variable for this.query selector all
+            // this used with query selector all and event listener will 
+            // search whatever is clicked to see if anything in that element
+            // has the class emailClass. Don't forget to NEST NEST NEST!
+            var messageBodyClass = this.querySelectorAll('.emailClass')[0];
+            console.log(this);
+
+            // add show to emailClass (be sure to use += to assign and add)
+            messageBodyClass.className += ' show';
+          })
+
+          // add mouseout event listener to hide email body again
+          subjectId[i].addEventListener('mouseout', function(event) {
+
+            // query selector all is doing the sameas above
+            // dont forget that when using query selector all, you need to use 
+            // an index selector ( [0] )
+            messageBodyClass = this.querySelectorAll('.emailClass.show')[0];
+            console.log(this);
+
+            // change .show class name back to emailClass (do this by using = instead 
+              // of +=)
+            messageBodyClass.className = 'emailClass';
+          })
+
+          // replace innerHTML of inboxCount with new inboxCount
+          var inboxElement = document.getElementById('inboxElement');
+
+          // give inbox element innerHTML value
+          inboxElement.innerHTML = subjectId.length;
+
+          // append content
+          header.appendChild(inboxElement);
+
+        } // end of for loop
+
+        } //end of interval function
+
+        // invoke interval fuction using set interval to create new emails every
+        // so many seconds
+        var myInterval = setInterval(intervalFunction, 5000);
+        // console.log(myInterval);
+
+        // remember to turn back interval after
+
+
 
       };
     </script>
